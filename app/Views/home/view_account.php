@@ -62,7 +62,9 @@
                 <a href="<?= base_url('dashboard') ?>" class="btn btn-secondary">
                     <i class="bi bi-arrow-left"></i> Back to Dashboard
                 </a>
+                <a href="<?= base_url('account/' . $account['id'] . '/edit') ?>" class="btn btn-outline-primary">Edit Account</a>
             </div>
+            <?php if (session()->getFlashdata('success')): ?><div class="alert alert-success"><?= esc(session()->getFlashdata('success')) ?></div><?php endif; ?>
 
             <!-- Account Information -->
             <div class="card">

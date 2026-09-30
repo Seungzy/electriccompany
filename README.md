@@ -1,4 +1,12 @@
-# CodeIgniter 4 Framework
+# Puihaha Electric Company
+
+The website uses the `electriccompany` MySQL database. Start Apache and MySQL in XAMPP before using the site. Import `database/electric_company.sql` for a fresh setup. The dashboard login uses the `user_accounts` table (`id`, `username`, `password`); the customer dashboard uses `customer_accounts`.
+
+To create a dashboard login locally, run `php spark dashboard:create-login <username>`. It generates a password and displays it once. Sign in at `/login`, then manage customer accounts in `/dashboard`. The dashboard and account pages require a login, and Logout ends the session.
+
+The provided classroom login sample supports plaintext passwords. Existing plaintext entries in `user_accounts` are accepted once and upgraded to a password hash on successful login. New logins created with the command are hashed from the start.
+
+## Framework information
 
 ## What is CodeIgniter?
 

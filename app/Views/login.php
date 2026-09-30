@@ -52,14 +52,21 @@
             <p class="text-muted mb-0">Enter your username and password.</p>
         </div>
 
-        <form action="<?= base_url('dashboard') ?>" method="get">
+        <?php if (session()->getFlashdata('error')): ?>
+            <div class="alert alert-danger" role="alert"><?= esc(session()->getFlashdata('error')) ?></div>
+        <?php endif; ?>
+        <?php if (session()->getFlashdata('success')): ?>
+            <div class="alert alert-success" role="status"><?= esc(session()->getFlashdata('success')) ?></div>
+        <?php endif; ?>
+        <form action="<?= base_url('login') ?>" method="post">
+            <?= csrf_field() ?>
             <div class="mb-3">
                 <label for="dashboard-username" class="form-label">Username</label>
-                <input id="dashboard-username" type="text" class="form-control" placeholder="Enter any username" autocomplete="off">
+                <input id="dashboard-username" name="username" type="text" class="form-control" value="<?= esc(old('username')) ?>" autocomplete="username" required maxlength="100">
             </div>
             <div class="mb-3">
                 <label for="dashboard-password" class="form-label">Password</label>
-                <input id="dashboard-password" type="password" class="form-control" placeholder="Enter any password" autocomplete="off">
+                <input id="dashboard-password" name="password" type="password" class="form-control" autocomplete="current-password" required>
             </div>
             <button type="submit" class="btn login-button w-100"><i class="fas fa-sign-in-alt me-2" aria-hidden="true"></i>Login</button>
         </form>

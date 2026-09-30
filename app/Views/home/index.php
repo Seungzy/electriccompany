@@ -75,8 +75,17 @@
             <div class="header-section">
                 <h1><i class="bi bi-lightning-charge-fill text-warning"></i> Puihaha Electric Company</h1>
                 <p class="text-muted">Customer Account Management System</p>
+                <p class="text-muted">Logged in as <strong><?= esc(session()->get('dashboard_username')) ?></strong></p>
                 <a href="<?= base_url() ?>" class="btn btn-secondary">Back to Website</a>
+                <a href="<?= base_url('account/new') ?>" class="btn btn-primary">Add Customer Account</a>
+                <form action="<?= base_url('logout') ?>" method="post" class="d-inline">
+                    <?= csrf_field() ?>
+                    <button type="submit" class="btn btn-outline-danger">Logout</button>
+                </form>
             </div>
+
+            <?php if (session()->getFlashdata('success')): ?><div class="alert alert-success"><?= esc(session()->getFlashdata('success')) ?></div><?php endif; ?>
+            <?php if (session()->getFlashdata('error')): ?><div class="alert alert-danger"><?= esc(session()->getFlashdata('error')) ?></div><?php endif; ?>
 
             <!-- Statistics Cards -->
             <div class="row mb-4">
@@ -178,6 +187,11 @@
                                         <a href="<?= base_url('account/' . $account['id']) ?>" class="btn btn-sm btn-outline-primary">
                                             <i class="bi bi-eye"></i> View
                                         </a>
+                                        <a href="<?= base_url('account/' . $account['id'] . '/edit') ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                        <form method="post" action="<?= base_url('account/' . $account['id'] . '/delete') ?>" class="d-inline" onsubmit="return confirm('Delete this customer account?')">
+                                            <?= csrf_field() ?>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
