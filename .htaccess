@@ -1,6 +1,11 @@
 # Disable directory browsing
 Options -Indexes
 
+# Keep database credentials inaccessible from the web.
+<Files ".env">
+	Require all denied
+</Files>
+
 # ----------------------------------------------------------------------
 # Rewrite engine
 # ----------------------------------------------------------------------
